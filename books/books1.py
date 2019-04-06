@@ -1,11 +1,12 @@
 import sys, csv
 
 def sort_books(file, how):
-    sorted_books = ["sorted", "books"]
-    if how:
-        print(*sorted_books, sep = "\n")
-    else:
-        sort_reverse(sorted_books)
+    with open(file, newline = "") as csvfile:
+        sorted_books = csv.reader(csvfile)
+        if how:
+            print(*sorted_books, sep = "\n")
+        else:
+            sort_reverse(sorted_books)
 
 def sort_authors(file, how):
     sorted_authors = ["sorted", "authors"]
@@ -15,6 +16,7 @@ def sort_authors(file, how):
         sort_reverse(sorted_authors)
     
 def sort_reverse(list):
+    #csv reader is not a list
     list.reverse()
     print(*list, sep = "\n")
 
@@ -24,7 +26,7 @@ def main():
         
     else:
         try:
-            file_object = open(sys.argv[1], "r")
+            file_object = sys.argv[1]
         except:
             print('Usage: blah blah blah', file=sys.stderr)
             return
