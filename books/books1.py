@@ -1,14 +1,22 @@
 import sys, csv
 
 def sort_books(file, how):
-    print("sort_books")
+    sorted_books = ["sorted", "books"]
+    if how:
+        print(*sorted_books, sep = "\n")
+    else:
+        sort_reverse(sorted_books)
 
 def sort_authors(file, how):
-    print("sort_authors")
+    sorted_authors = ["sorted", "authors"]
+    if how:
+        print(*sorted_authors, sep = "\n")
+    else:
+        sort_reverse(sorted_authors)
     
 def sort_reverse(list):
-    #use list and reverse, print
-    print("reverse print")
+    list.reverse()
+    print(*list, sep = "\n")
 
 def main():    
     if len(sys.argv) < 3 or len(sys.argv) > 4:
