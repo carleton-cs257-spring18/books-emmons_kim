@@ -1,11 +1,22 @@
+'''
+Authors: Allison Kim and Madeleine Emmons
+Date: April 7, 2019
+
+This program allows a user to extract information from a csv file containing
+book titles and authors, and use either one of the information to create
+a list in forward or reverse alphabetical order. Command line arguments
+in the correct format would print out sorted list.
+'''
+
 import sys, csv
 import operator
 
-
-#This function's parameters are a cvs filename that contains book titles and authors,
-#and a Boolean that checks whether the list should be alphabetical in ascending or
-#descending order. Its output is a printed list of book titles, either in alphabetical
-#or reverse alphabetical order.
+'''
+This function's parameters are a cvs filename that contains book titles and authors,
+and a Boolean that checks whether the list should be alphabetical in ascending or
+descending order. Its output is a printed list of book titles, either in alphabetical
+or reverse alphabetical order.
+'''
 def sort_books(file, how):
     with open(file, newline = "") as csvfile:
         list = csv.reader(csvfile)
@@ -20,10 +31,12 @@ def sort_books(file, how):
             for book in sorted_books: 
                 print(book[0], sep = "\n")
 
-#This function's parameters are a cvs filename that contains book titles and authors,
-#and a Boolean that checks whether the list should be alphabetical in ascending or
-#descending order. Its output is a printed list of authors, either in alphabetical
-#or reverse alphabetical order.
+'''
+This function's parameters are a cvs filename that contains book titles and authors,
+and a Boolean that checks whether the list should be alphabetical in ascending or
+descending order. Its output is a printed list of authors, either in alphabetical
+or reverse alphabetical order.
+'''
 def sort_authors(filename, boolean):
     names = []
     with open(filename) as csvfile:
@@ -58,10 +71,14 @@ def main():
 
         try:
             action = sys.argv[2]
+            
             #Makes sure csv file being called is valid.
-            if FileNotFoundError:
-                print('Usage: blah blah blah', file=sys.stderr)
-                return
+            try:
+                f = open(file_object)
+            except FileNotFoundError:
+               print('Usage: blah blah blah', file=sys.stderr)
+               return
+
         except:
             print('Usage: blah blah blah', file=sys.stderr)
             return
@@ -82,19 +99,19 @@ def main():
                 direction = True
             else:
                 print('Usage: blah blah blah', file=sys.stderr)
-                return
+                
         except:
             #The direction argument is not mandatory. Consider absent argument as
             #"forward".
             direction = True
 
-        if action == "books": #Sorts by title.
+        if action == "books":
             sort_books(file_object, direction)
             
-        elif action == "authors": #Sorts by author.
+        elif action == "authors":
             sort_authors(file_object, direction)
             
-        else: #Other argument issues?
+        else:
             print('Usage: blah blah blah', file=sys.stderr)
     
 if __name__ == '__main__':
