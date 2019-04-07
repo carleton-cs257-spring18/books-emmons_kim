@@ -1,8 +1,10 @@
 import sys, csv
+import operator
 
 def sort_books(file, how):
     with open(file, newline = "") as csvfile:
-        sorted_books = csv.reader(csvfile)
+        list = csv.reader(csvfile)
+        sorted_books = sorted(list, key=operator.itemgetter(0))
         if how:
             print(*sorted_books, sep = "\n")
         else:
@@ -16,7 +18,6 @@ def sort_authors(file, how):
         sort_reverse(sorted_authors)
     
 def sort_reverse(list):
-    #csv reader is not a list
     list.reverse()
     print(*list, sep = "\n")
 
