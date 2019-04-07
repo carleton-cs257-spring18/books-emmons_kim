@@ -75,6 +75,7 @@ def main():
             #Makes sure csv file being called is valid.
             try:
                 f = open(file_object)
+                f.close()
             except FileNotFoundError:
                print('Usage: blah blah blah', file=sys.stderr)
                return
