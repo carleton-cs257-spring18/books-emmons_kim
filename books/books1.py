@@ -99,6 +99,7 @@ def main():
                 direction = True
             else:
                 print('Usage: blah blah blah', file=sys.stderr)
+                return
                 
         except:
             #The direction argument is not mandatory. Consider absent argument as
