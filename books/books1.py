@@ -6,10 +6,12 @@ def sort_books(file, how):
         list = csv.reader(csvfile)
         sorted_books = sorted(list, key=operator.itemgetter(0))
         if how:
-            print(*sorted_books, sep = "\n")
+            for book in sorted_books: 
+                print(book[0], sep = "\n")
         else:
             sorted_books.reverse()
-            print(*list, sep = "\n")
+            for book in sorted_books: 
+                print(book[0], sep = "\n")
 
 #This function takes in a cvs filename that contains book titles and 
 # as well as taking in a boolean. Its output is a printed list of authors 
