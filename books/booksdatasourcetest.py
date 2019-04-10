@@ -1,5 +1,5 @@
 #hi
-
+import booksdatasource
 import unittest
 
 class BooksDataSourceTest(unittest.TestCase):
@@ -8,4 +8,6 @@ class BooksDataSourceTest(unittest.TestCase):
 
     def tearDown(self):
         pass
-    
+
+if __name__ == '__main__':
+    unittest.main()
