@@ -11,7 +11,10 @@ class BooksDataSourceTest(unittest.TestCase):
         pass
     
     def test_negative_author_ID(self):
-        self.assertRaises(ValueError, self.books, -4, None, None, None)
+        self.assertRaises(ValueError, self.source_checker.books, -4, None, None, None)
+
+    def test_big_author_ID(self):
+        self.assertRaises(ValueError, self.source_checker.books, 312, None, None, None)
 
 if __name__ == '__main__':
     unittest.main()
