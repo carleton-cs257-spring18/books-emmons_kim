@@ -9,6 +9,9 @@ class BooksDataSourceTest(unittest.TestCase):
 
     def tearDown(self):
         pass
+    
+    def test_negative_author_ID(self):
+        self.assertRaises(ValueError, self.books, -4, None, None, None)
 
 if __name__ == '__main__':
     unittest.main()
