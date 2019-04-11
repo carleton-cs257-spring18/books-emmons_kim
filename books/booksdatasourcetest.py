@@ -9,12 +9,14 @@ class BooksDataSourceTest(unittest.TestCase):
 
     def tearDown(self):
         pass
+
+    #Tests for 2nd function: books: ValueError: valid author IDs
     
     def test_negative_author_ID(self):
-        self.assertRaises(ValueError, self.source_checker.books, -4, None, None, None)
+        self.assertRaises(ValueError, self.source_checker.books, -4, None, None, None, "title")
 
     def test_big_author_ID(self):
-        self.assertRaises(ValueError, self.source_checker.books, 312, None, None, None)
+        self.assertRaises(ValueError, self.source_checker.books, 312, None, None, None, "title")
 
 if __name__ == '__main__':
     unittest.main()
