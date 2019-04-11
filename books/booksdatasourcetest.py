@@ -1,10 +1,11 @@
 #hi
+
 import booksdatasource
 import unittest
 
 class BooksDataSourceTest(unittest.TestCase):
     def setUp(self):
-        pass
+        self.source_checker = booksdatasource.BooksDataSource(books.csv, authors.csv, books_authors.csv)
 
     def tearDown(self):
         pass
