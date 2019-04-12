@@ -38,8 +38,8 @@ class BooksDataSourceTest(unittest.TestCase):
     #book_id: 5
 
     '''
-    def test_small_book_id(self):
-    def test_big_book_id(self):  
+    def test_small_book_id_authors(self):
+    def test_big_book_id_authors(self):  
     '''
     
     def test_authors_default_match(self):
@@ -63,6 +63,14 @@ class BooksDataSourceTest(unittest.TestCase):
         self.assertEqual(self.source_checker.authors(search_text="w", sort_by="value"), [["Cather", "Willa"], ["Willis", "Connie"], ["Wodehouse", "Pelham Grenville"]])
 
     #start_year: 3
+
+    def test_start_year_default_match(self):
+        self.assertEqual(self.source_checker.authors(start_year=1960), [["Willis", "Connie"], ["Christie", "Agatha"], ["Morrison", "Toni"], ["Lewis", "Sinclair"], ["Gaiman", "Neil"], ["Pratchett", "Terry"], ["Wodehouse", "Pelham Grenvile"], ["Márquez", "Gabriel García"], ["Rushdie", "Salman"], ["Bujold", "Lois McMaster"], ["Murakami", "Haruki"], ["Alderman", "Naomi"], ["DuMaurier", "Daphne"], ["Jemisen", "N.K."], ["Carré", "John Le"]])
+
+    '''
+    def test_start_year_bith_year_match(self):
+    def test_start_year_other_value_match(self):
+    '''
 
     #end_year: 3
     
