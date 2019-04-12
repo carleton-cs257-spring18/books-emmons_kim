@@ -1,4 +1,12 @@
-#23 tests
+'''
+Authors: Allison Kim and Madeleine Emmons
+Date: April 12, 2019
+
+These are combinations of 23 unit tests for booksdatasource.py.
+The tests check whether ValueErrors (TypeErrors are not included)
+are raised at the correct spots and whether value returned from
+all four functions match the expected outputs.
+'''
 
 import booksdatasource, unittest
 
@@ -9,7 +17,7 @@ class BooksDataSourceTest(unittest.TestCase):
     def tearDown(self):
         pass
 
-    #Tests for 1st function: book: 3
+    #Tests for function book
 
     def test_small_book_id(self):
        self.assertRaises(ValueError, self.source_checker.book, -34)
@@ -20,7 +28,7 @@ class BooksDataSourceTest(unittest.TestCase):
     def test_book_match(self):
         self.assertEqual(self.source_checker.book(16),"Omoo")
 
-    #Tests for 2nd function: books: 3
+    #Tests for function books
     
     def test_small_author_id_books(self):
         self.assertRaises(ValueError, self.source_checker.books, author_id = -4)
@@ -31,7 +39,7 @@ class BooksDataSourceTest(unittest.TestCase):
     def test_books_match_books(self):
         self.assertEqual(self.source_checker.books(author_id = 13), ["Moby Dick", "Omoo"])
 
-    #Tests for 3rd function: author: 3
+    #Tests for function author
 
     def test_small_author_id(self):
         self.assertRaises(ValueError, self.source_checker.author, 6)
@@ -42,9 +50,9 @@ class BooksDataSourceTest(unittest.TestCase):
     def test_author_match(self):
         self.assertEqual(self.source_checker.author(9), ["Márquez", "Gabriel Garcia"])
 
-    #Tests for 4th function: authors: 14
+    #Tests for function authors
 
-    #book_id: 5
+    #Tests for parameter book_id
 
     def test_small_book_id_authors(self):
         self.assertRaises(ValueError, self.source_checker.book, -786)
@@ -61,7 +69,7 @@ class BooksDataSourceTest(unittest.TestCase):
     def test_authors_other_value_match(self):
         self.assertEqual(self.source_checker.authors(book_id = 6), [["Gaiman", "Neil"], ["Pratchett", "Terry"]])
 
-    #search_text: 3
+    #Tests for parameter search_text
 
     def test_search_text_default_match(self):
         self.assertEqual(self.source_checker.authors(search_text = "char"), [["Brontë", "Charlotte"], ["Dickens", "Charles"]])
@@ -72,7 +80,7 @@ class BooksDataSourceTest(unittest.TestCase):
     def test_search_text_other_value_match(self):
         self.assertEqual(self.source_checker.authors(search_text = "w", sort_by = "value"), [["Cather", "Willa"], ["Willis", "Connie"], ["Wodehouse", "Pelham Grenville"]])
 
-    #start_year: 3
+    #Tests for parameter start_year
 
     def test_start_year_default_match(self):
         self.assertEqual(self.source_checker.authors(start_year = 1960), [["Alderman", "Naomi"], ["Bujold", "Lois McMaster"], ["Carré", "John Le"], ["Christie", "Agatha"], ["DuMaurier", "Daphne"], ["Gaiman", "Neil"], ["Jemisen", "N.K."], ["Lewis", "Sinclair"], ["Murakami", "Haruki"], ["Márquez", "Gabriel García"], ["Morrison", "Toni"], ["Pratchett", "Terry"], ["Rushdie", "Salman"], ["Willis", "Connie"], ["Wodehouse", "Pelham Grenvile"]])
@@ -83,7 +91,7 @@ class BooksDataSourceTest(unittest.TestCase):
     def test_start_year_other_value_match(self):
         self.assertEqual(self.source_checker.authors(start_year = 2019, sort_by = "value"), [["Alderman", "Naomi"], ["Bujold", "Lois McMaster"], ["Carré", "John Le"], ["Gaiman", "Neil"], ["Jemisen", "N.K."], ["Lewis", "Sinclair"], ["Murakami", "Haruki"],  ["Morrison", "Toni"],  ["Rushdie", "Salman"], ["Willis", "Connie"]]) 
 
-    #end_year: 3
+    #Tests for parameter end_year
 
     def test_end_year_default_match(self):
         self.assertEqual(self.source_checker.authors(end_year = 1861), [["Austen", "Jane"], ["Brontë", "Ann"], ["Brontë", "Charlotte"], ["Bujold", "Lois McMaster"], ["Christie", "Agatha"], ["Dickens", "Charles"], ["Eliot", "George"], ["Jerome", "Jerome K."], ["Melville", "Herman"], ["Rushdie", "Salman"]])
