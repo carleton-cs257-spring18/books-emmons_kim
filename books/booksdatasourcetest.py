@@ -33,6 +33,15 @@ class BooksDataSourceTest(unittest.TestCase):
 
     #Tests for 3rd function: author: 3
 
+    def test_small_book_id(self):
+        self.assertRaises(ValueError, self.source_checker.author, book_id=-6)
+
+    def test_big_book_id(self):
+        self.assertRaises(ValueError, self.source_checker.author, book_id=600)
+    
+    def test_author_match(self):
+        self.assertEqual(self.source_checker.author(book_id=9), ["Márquez", "Gabriel Garcia"])
+
     #Tests for 4th function: authors: 14
 
     #book_id: 5
@@ -65,7 +74,7 @@ class BooksDataSourceTest(unittest.TestCase):
     #start_year: 3
 
     def test_start_year_default_match(self):
-        self.assertEqual(self.source_checker.authors(start_year=1960), [["Willis", "Connie"], ["Christie", "Agatha"], ["Morrison", "Toni"], ["Lewis", "Sinclair"], ["Gaiman", "Neil"], ["Pratchett", "Terry"], ["Wodehouse", "Pelham Grenvile"], ["Márquez", "Gabriel García"], ["Rushdie", "Salman"], ["Bujold", "Lois McMaster"], ["Murakami", "Haruki"], ["Alderman", "Naomi"], ["DuMaurier", "Daphne"], ["Jemisen", "N.K."], ["Carré", "John Le"]])
+        self.assertEqual(self.source_checker.authors(start_year=1960), [["Alderman", "Naomi"], ["Bujold", "Lois McMaster"], ["Carré", "John Le"], ["Christie", "Agatha"], ["DuMaurier", "Daphne"], ["Gaiman", "Neil"], ["Jemisen", "N.K."], ["Lewis", "Sinclair"], ["Murakami", "Haruki"], ["Márquez", "Gabriel García"], ["Morrison", "Toni"], ["Pratchett", "Terry"], ["Rushdie", "Salman"], ["Willis", "Connie"], ["Wodehouse", "Pelham Grenvile"]])
 
     '''
     def test_start_year_bith_year_match(self):
