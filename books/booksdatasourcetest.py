@@ -34,13 +34,13 @@ class BooksDataSourceTest(unittest.TestCase):
     #Tests for 3rd function: author: 3
 
     def test_small_author_id(self):
-        self.assertRaises(ValueError, self.source_checker.author, author_id=-6)
+        self.assertRaises(ValueError, self.source_checker.author, 6)
 
     def test_big_author_id(self):
-        self.assertRaises(ValueError, self.source_checker.author, author_id=600)
+        self.assertRaises(ValueError, self.source_checker.author, 600)
     
     def test_author_match(self):
-        self.assertEqual(self.source_checker.author(author_id=9), ["Márquez", "Gabriel Garcia"])
+        self.assertEqual(self.source_checker.author(9), ["Márquez", "Gabriel Garcia"])
 
     #Tests for 4th function: authors: 14
 
