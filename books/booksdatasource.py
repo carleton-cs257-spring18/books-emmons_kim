@@ -17,7 +17,8 @@ class BooksDataSource:
         self.authors = authors_filename
         self.books_authors = books_authors_link_filename
 
-    def openfile(self, filename):
+    @staticmethod
+    def openfile(filename):
          with open(filename, newline = "") as csvfile:
              list = csv.reader(csvfile)
              sorted_list = sorted(list, key=operator.itemgetter(0))
@@ -32,7 +33,7 @@ class BooksDataSource:
         if book_id > 46 or book_id < 0:
             raise ValueError("what")
         else:
-            sorted_list = openfile(self.books)
+            sorted_list = BooksDataSource.openfile(self.books)
             for book in sorted_list:
                 if book[0] == str(book_id):
                     return book[1]
