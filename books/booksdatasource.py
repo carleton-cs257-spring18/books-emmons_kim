@@ -37,6 +37,7 @@ class BooksDataSource:
         if author_id > 24 or author_id < 0:
             raise ValueError("That is not a valid ID number.")
         else:
+            '''
             linked_list = BooksDataSource.openfile(self.books_authors)
             books_list = BooksDataSource.openfile(self.books)
             ids = []
@@ -49,6 +50,8 @@ class BooksDataSource:
                     if book[0] == str(id):
                         books.append(book[1])
         return books
+        '''
+            return []
 
     ''' 
     Returns the author with the specified ID. 
