@@ -75,7 +75,7 @@ class BooksDataSource:
 
             Raises ValueError if author_id is not a valid author ID.
         '''
-         if author_id > 24 or author_id < 0:
+        if author_id > 24 or author_id < 0:
             raise ValueError("That is not a valid ID number.")
         else:
             author_list = openfile("authors.csv")
