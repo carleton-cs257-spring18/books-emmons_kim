@@ -96,4 +96,6 @@ class BooksDataSource:
 
             See the BooksDataSource comment for a description of how an author is represented.
         '''
+        if book_id > 48 or book_id < 0:
+            raise ValueError("That is not a valid ID number.")
         return []
