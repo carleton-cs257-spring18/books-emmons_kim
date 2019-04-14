@@ -8,6 +8,8 @@
     CS 257 Software Design class.
 '''
 
+import csv, operator
+
 class BooksDataSource:
     '''
     A BooksDataSource object provides access to data about books and authors.
@@ -74,7 +76,10 @@ class BooksDataSource:
             NOTE TO STUDENTS: I have not specified how you will store the books/authors
             data in a BooksDataSource object. That will be up to you, in Phase 3.
         '''
-        pass
+
+        self.books = books_filename
+        self.authors = authors_filename
+        self.books_authors = books_authors_link_filename
 
     def book(self, book_id):
         ''' Returns the book with the specified ID. (See the BooksDataSource comment
@@ -82,7 +87,15 @@ class BooksDataSource:
 
             Raises ValueError if book_id is not a valid book ID.
         '''
-        return {}
+        if book_id > 46 or book_id < 0:
+            raise ValueError("what")
+        else:
+            with open(self.books, newline = "") as csvfile:
+                list = csv.reader(csvfile)
+                sorted_list = sorted(list, key=operator.itemgetter(0))
+                for book in sorted_list:
+                    if book[0] == str(book_id):
+                        return book[1]
 
     def books(self, *, author_id=None, search_text=None, start_year=None, end_year=None, sort_by='title'):
         ''' Returns a list of all the books in this data source matching all of
