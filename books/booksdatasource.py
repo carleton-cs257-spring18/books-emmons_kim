@@ -75,7 +75,11 @@ class BooksDataSource:
 
             Raises ValueError if author_id is not a valid author ID.
         '''
-        return {}
+         if author_id > 24 or author_id < 0:
+            raise ValueError("That is not a valid ID number.")
+        else:
+            author_list = openfile("authors.csv")
+        return author_list[author_id]
 
     def authors(self, *, book_id=None, search_text=None, start_year=None, end_year=None, sort_by='birth_year'):
         ''' Returns a list of all the authors in this data source matching all of the
