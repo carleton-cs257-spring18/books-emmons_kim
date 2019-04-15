@@ -3,8 +3,8 @@ import csv, operator
 class BooksDataSource:
 
     def __init__(self, books_filename, authors_filename, books_authors_link_filename):
-        self.books = books_filename
-        self.authors = authors_filename
+        self.bookss = books_filename
+        self.authorss = authors_filename
         self.books_authors = books_authors_link_filename
 
     @staticmethod
@@ -22,7 +22,7 @@ class BooksDataSource:
         if book_id > 46 or book_id < 0:
             raise ValueError("That is not a valid ID number.")
         else:
-            books_list = BooksDataSource.openfile(self.books)
+            books_list = BooksDataSource.openfile(self.bookss)
             for book in books_list:
                 if book[0] == str(book_id):
                     return book[1]
@@ -60,10 +60,8 @@ class BooksDataSource:
     def author(self, author_id):
         if author_id > 24 or author_id < 0:
             raise ValueError("That is not a valid ID number.")
-        elif author_id == 6:
-            raise ValueError("Wrong error...:/")
         else:
-            authors_list = BooksDataSource.openfile(self.authors)
+            authors_list = BooksDataSource.openfile(self.authorss)
             author_name = []
             for author in authors_list:
                 if author[0] == str(author_id):
@@ -99,6 +97,7 @@ class BooksDataSource:
 
             See the BooksDataSource comment for a description of how an author is represented.
         '''
-        if book_id > 48 or book_id < 0:
-            raise ValueError("That is not a valid ID number.")
+        if book_id != None:
+            if book_id > 48 or book_id < 0:
+                raise ValueError("That is not a valid ID number.")
         return []
