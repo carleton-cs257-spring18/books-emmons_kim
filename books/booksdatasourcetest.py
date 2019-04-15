@@ -72,13 +72,13 @@ class BooksDataSourceTest(unittest.TestCase):
     #Tests for parameter search_text
 
     def test_search_text_default_match(self):
-        self.assertEqual(self.source_checker.authors(search_text = "char"), [["Brontë", "Charlotte"], ["Dickens", "Charles"]])
+        self.assertEqual(self.source_checker.authors(search_text = "char"), [['Dickens', 'Charles'], ['Brontë', 'Charlotte']])
 
     def test_search_text_birth_year_match(self):
-        self.assertEqual(self.source_checker.authors(search_text = "le", sort_by = "birth_year"), [["Lewis", "Sinclair"], ["Lewis", "Sinclair"], ["Carré", "John Le"]])
+        self.assertEqual(self.source_checker.authors(search_text = "le", sort_by = "birth_year"), [['Dickens', 'Charles'], ['Melville', 'Herman'], ['Wodehouse', 'Pelham Grenville'], ['Lewis', 'Sinclair'], ['Lewis', 'Sinclair'], ['Carré', 'John Le']])
         
     def test_search_text_other_value_match(self):
-        self.assertEqual(self.source_checker.authors(search_text = "w", sort_by = "value"), [["Cather", "Willa"], ["Willis", "Connie"], ["Wodehouse", "Pelham Grenville"]])
+        self.assertEqual(self.source_checker.authors(search_text = "w", sort_by = "value"), [['Cather', 'Willa'], ['Lewis', 'Sinclair'], ['Lewis', 'Sinclair'], ['Willis', 'Connie'], ['Wodehouse', 'Pelham Grenville']])
 
     #Tests for parameter start_year
 
