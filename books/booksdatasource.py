@@ -151,14 +151,3 @@ class BooksDataSource:
                     author_name.append(author[3])
                     author_list.append(author_name)
         return BooksDataSource.specifiedsort(author_list, sort_by)
-
-booksdatasource = BooksDataSource("books.csv", "authors.csv", "books_authors.csv")
-
-print(booksdatasource.authors(start_year = 1960))
-print('        ')
-print(booksdatasource.authors(start_year = 2000, sort_by = "birth_year"))
-print('        ')
-print(booksdatasource.authors(end_year = 1861))
-print('        ')
-print(booksdatasource.authors(end_year = 1820, sort_by = "birth_year"))
-
