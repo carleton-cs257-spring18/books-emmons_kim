@@ -42,7 +42,7 @@ class BooksDataSourceTest(unittest.TestCase):
     #Tests for function author
 
     def test_small_author_id(self):
-        self.assertRaises(ValueError, self.source_checker.author, 6)
+        self.assertRaises(ValueError, self.source_checker.author, -6)
 
     def test_big_author_id(self):
         self.assertRaises(ValueError, self.source_checker.author, 600)
