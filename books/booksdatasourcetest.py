@@ -48,7 +48,7 @@ class BooksDataSourceTest(unittest.TestCase):
         self.assertRaises(ValueError, self.source_checker.author, 600)
     
     def test_author_match(self):
-        self.assertEqual(self.source_checker.author(9), ["Márquez", "Gabriel Garcia"])
+        self.assertEqual(self.source_checker.author(9), ["Márquez", "Gabriel García"])
 
     #Tests for function authors
 
