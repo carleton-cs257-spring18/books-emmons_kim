@@ -64,10 +64,10 @@ class BooksDataSourceTest(unittest.TestCase):
         self.assertEqual(self.source_checker.authors(book_id = 23), ["Wodehouse", "Pelham Grenville"])
     
     def test_authors_birth_year_match(self):
-        self.assertEqual(self.source_checker.authors(book_id = 6), [["Pratchett", "Terry"], ["Gaiman", "Neil"]])
+        self.assertEqual(self.source_checker.authors(book_id = 6, sort_by = "birth_year"), [["Pratchett", "Terry"], ["Gaiman", "Neil"]])
 
     def test_authors_other_value_match(self):
-        self.assertEqual(self.source_checker.authors(book_id = 6), [["Gaiman", "Neil"], ["Pratchett", "Terry"]])
+        self.assertEqual(self.source_checker.authors(book_id = 6, sort_by = "value"), [["Gaiman", "Neil"], ["Pratchett", "Terry"]])
 
     #Tests for parameter search_text
 
