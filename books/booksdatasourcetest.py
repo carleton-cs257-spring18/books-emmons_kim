@@ -61,7 +61,7 @@ class BooksDataSourceTest(unittest.TestCase):
         self.assertRaises(ValueError, self.source_checker.book, 67)
     
     def test_authors_default_match(self):
-        self.assertEqual(self.source_checker.authors(book_id = 23), ["Wodehouse", "Pelham Grenville"])
+        self.assertEqual(self.source_checker.authors(book_id = 23), [["Wodehouse", "Pelham Grenville"]])
     
     def test_authors_birth_year_match(self):
         self.assertEqual(self.source_checker.authors(book_id = 6, sort_by = "birth_year"), [["Pratchett", "Terry"], ["Gaiman", "Neil"]])
