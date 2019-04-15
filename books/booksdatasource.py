@@ -74,14 +74,12 @@ class BooksDataSource:
                 return[]
         else:
             if search_text != None:
-                text = search_text.lower()
                 authors_list = BooksDataSource.openfile(self.authorss)
                 author_list = []
                 for author in authors_list:
                     author_name = []
-                    str1 = author[1].lower()
-                    str2 = author[2].lower()
-                    if str1.find(text) != -1 or str2.find(text) != -1:
+                    if (author[1].lower().find(search_text.lower()) != -1 or
+                        author[2].lower().find(search_text.lower()) != -1):
                         author_name.append(author[1])
                         author_name.append(author[2])
                         author_name.append(author[3])
@@ -100,7 +98,9 @@ class BooksDataSource:
             else:
                 return []
 
+'''
 booksdatasource = BooksDataSource("books.csv", "authors.csv", "books_authors.csv")
 print(booksdatasource.authors(search_text = "le", sort_by = "birth_year"))
 print(booksdatasource.authors(search_text = "char"))
 print(booksdatasource.authors(search_text = "w", sort_by = "value"))
+'''
