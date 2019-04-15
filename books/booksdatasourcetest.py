@@ -83,21 +83,21 @@ class BooksDataSourceTest(unittest.TestCase):
     #Tests for parameter start_year
 
     def test_start_year_default_match(self):
-        self.assertEqual(self.source_checker.authors(start_year = 1960), [["Alderman", "Naomi"], ["Bujold", "Lois McMaster"], ["Carré", "John Le"], ["Christie", "Agatha"], ["DuMaurier", "Daphne"], ["Gaiman", "Neil"], ["Jemisen", "N.K."], ["Lewis", "Sinclair"], ["Murakami", "Haruki"], ["Márquez", "Gabriel García"], ["Morrison", "Toni"], ["Pratchett", "Terry"], ["Rushdie", "Salman"], ["Willis", "Connie"], ["Wodehouse", "Pelham Grenvile"]])
+        self.assertEqual(self.source_checker.authors(start_year = 1960), [['Wodehouse', 'Pelham Grenville'], ['Lewis', 'Sinclair'], ['Christie', 'Agatha'], ['DuMaurier', 'Daphne'], ['Márquez', 'Gabriel García'], ['Carré', 'John Le'], ['Morrison', 'Toni'], ['Willis', 'Connie'], ['Rushdie', 'Salman'], ['Pratchett', 'Terry'], ['Bujold', 'Lois McMaster'], ['Murakami', 'Haruki'], ['Gaiman', 'Neil'], ['Jemisen', 'N.K.'], ['Alderman', 'Naomi']])
 
     def test_start_year_birth_year_match(self):
-        self.assertEqual(self.source_checker.authors(start_year = 2000, sort_by = "birth_year"),[["Lewis", "Sinclair"], ["Márquez", "Gabriel Garcia"], ["Carré", "John Le"], ["Morrison", "Toni"], ["Willis", "Connie"], ["Rushdie", "Salman"], ["Bujold", "Lois McMaster"], ["Murakami", "Haruki"], ["Prachett", "Terry"], ["Gainman", "Neil"],  ["Bujold", "Lois McMaster"], ["Jemisen", "N.K."], ["Alderman", "Naomi"]])
+        self.assertEqual(self.source_checker.authors(start_year = 2000, sort_by = "birth_year"), [['Lewis', 'Sinclair'], ['Márquez', 'Gabriel García'], ['Carré', 'John Le'], ['Morrison', 'Toni'], ['Willis', 'Connie'], ['Rushdie', 'Salman'], ['Pratchett', 'Terry'], ['Bujold', 'Lois McMaster'], ['Murakami', 'Haruki'], ['Gaiman', 'Neil'], ['Jemisen', 'N.K.'], ['Alderman', 'Naomi']])
     
     def test_start_year_other_value_match(self):
-        self.assertEqual(self.source_checker.authors(start_year = 2019, sort_by = "value"), [["Alderman", "Naomi"], ["Bujold", "Lois McMaster"], ["Carré", "John Le"], ["Gaiman", "Neil"], ["Jemisen", "N.K."], ["Lewis", "Sinclair"], ["Murakami", "Haruki"],  ["Morrison", "Toni"],  ["Rushdie", "Salman"], ["Willis", "Connie"]]) 
+        self.assertEqual(self.source_checker.authors(start_year = 2019, sort_by = "value"), [['Alderman', 'Naomi'], ['Bujold', 'Lois McMaster'], ['Carré', 'John Le'], ['Gaiman', 'Neil'], ['Jemisen', 'N.K.'], ['Lewis', 'Sinclair'], ['Morrison', 'Toni'], ['Murakami', 'Haruki'], ['Rushdie', 'Salman'], ['Willis', 'Connie']]) 
 
     #Tests for parameter end_year
 
     def test_end_year_default_match(self):
-        self.assertEqual(self.source_checker.authors(end_year = 1861), [["Austen", "Jane"], ["Brontë", "Ann"], ["Brontë", "Charlotte"], ["Bujold", "Lois McMaster"], ["Christie", "Agatha"], ["Dickens", "Charles"], ["Eliot", "George"], ["Jerome", "Jerome K."], ["Melville", "Herman"], ["Rushdie", "Salman"]])
+        self.assertEqual(self.source_checker.authors(end_year = 1861), [['Austen', 'Jane'], ['Dickens', 'Charles'], ['Brontë', 'Charlotte'], ['Brontë', 'Emily'], ['Eliot', 'George'], ['Melville', 'Herman'], ['Brontë', 'Ann'], ['Jerome', 'Jerome K.']])
 
     def test_end_year_birth_year_match(self):
-        self.assertEqual(self.source_checker.authors(end_year = 1820, sort_by = "birth_year"), [["Austen", "Jane"], ["Dickens", "Charles"], ["Brontë", "Charlotte"], ["Eliot", "George"], ["Melville", "Herman"], ["Brontë", "Ann"], ["Brontë", "Emily"]])
+        self.assertEqual(self.source_checker.authors(end_year = 1820, sort_by = "birth_year"), [['Austen', 'Jane'], ['Dickens', 'Charles'], ['Brontë', 'Charlotte'], ['Brontë', 'Emily'], ['Eliot', 'George'], ['Melville', 'Herman'], ['Brontë', 'Ann']])
     
     def test_end_year_other_value_match(self):
         self.assertEqual(self.source_checker.authors(end_year = 1816, sort_by = "value"), [["Austen", "Jane"], ["Brontë", "Charlotte"], ["Dickens", "Charles"]])
