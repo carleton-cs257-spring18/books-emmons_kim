@@ -101,25 +101,42 @@ class BooksDataSource:
                             author_name.append(author[2])
                             author_name.append(author[3])
                             author_list.append(author_name)
-        else:
-            if search_text != None:
-                authors_list = BooksDataSource.openfile(self.authorss)
-                author_list = []
-                for author in authors_list:
-                    author_name = []
-                    if (author[1].lower().find(search_text.lower()) != -1 or
+        elif search_text != None:
+            authors_list = BooksDataSource.openfile(self.authorss)
+            author_list = []
+            for author in authors_list:
+                author_name = []
+                if (author[1].lower().find(search_text.lower()) != -1 or
                         author[2].lower().find(search_text.lower()) != -1):
-                        author_name.append(author[1])
-                        author_name.append(author[2])
-                        author_name.append(author[3])
-                        author_list.append(author_name)
-            else:
-                return []
+                    author_name.append(author[1])
+                    author_name.append(author[2])
+                    author_name.append(author[3])
+                    author_list.append(author_name)
+        elif start_year != None:
+            authors_list = BooksDataSource.openfile(self.authorss)
+            author_list = []
+            for author in authors_list:
+                if int(author[4]) >= int(start_year) or author[4] == NULL:
+                    author_name.append(author[1])
+                    author_name.append(author[2])
+                    author_name.append(author[3])
+                    author_list.appen(author_name)
+        elif end_year != None:
+            authors_list = BooksDataSource.openfile(self.authorss)
+            author_list = []
+            for author in authors_list:
+                author_name = []
+                if int(author[3]) <= int(end_year):
+                    author_name.append(author[1])
+                    author_name.append(author[2])
+                    author_name.append(author[3])
+                    author_list.append(author_name)
         return BooksDataSource.specifiedsort(author_list, sort_by)
 
-'''
+
 booksdatasource = BooksDataSource("books.csv", "authors.csv", "books_authors.csv")
 print(booksdatasource.authors(book_id = 23))
 print(booksdatasource.authors(book_id = 6, sort_by = "birth_year"))
 print(booksdatasource.authors(book_id = 6, sort_by = "value"))
-'''
+print(booksdatasource.authors(end_year = 2014))
+print(booksdatasource.authors(start_year = 2014))
