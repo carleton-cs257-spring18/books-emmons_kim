@@ -63,10 +63,7 @@ class BooksDataSource:
             for author in authors_list:
                 if author[0] == str(author_id):
                     author_name.append(author[1])
-                    if author[2] == "Gabriel García":
-                        author_name.append("Gabriel Garcia")
-                    else:
-                        author_name.append(author[2])
+                    author_name.append(author[2])
             return author_name
     
     def authors(self, *, book_id=None, search_text=None, start_year=None, end_year=None, sort_by='birth_year'):
@@ -74,8 +71,36 @@ class BooksDataSource:
             if book_id > 48 or book_id < 0:
                 raise ValueError("That is not a valid ID number.")
             else:
-
-                
+                return[]
         else:
-            
-        
+            if search_text != None:
+                text = search_text.lower()
+                authors_list = BooksDataSource.openfile(self.authorss)
+                author_list = []
+                for author in authors_list:
+                    author_name = []
+                    str1 = author[1].lower()
+                    str2 = author[2].lower()
+                    if str1.find(text) != -1 or str2.find(text) != -1:
+                        author_name.append(author[1])
+                        author_name.append(author[2])
+                        author_name.append(author[3])
+                        author_list.append(author_name)
+                if sort_by == "birth_year":
+                    s_author_list = sorted(author_list, key=operator.itemgetter(2))
+                else:
+                    s_author_list = sorted(author_list, key=operator.itemgetter(0))
+                only_name_list = []
+                for each_author in s_author_list:
+                    name_list = []
+                    name_list.append(each_author[0])
+                    name_list.append(each_author[1])
+                    only_name_list.append(name_list)
+                return only_name_list
+            else:
+                return []
+
+booksdatasource = BooksDataSource("books.csv", "authors.csv", "books_authors.csv")
+print(booksdatasource.authors(search_text = "le", sort_by = "birth_year"))
+print(booksdatasource.authors(search_text = "char"))
+print(booksdatasource.authors(search_text = "w", sort_by = "value"))
