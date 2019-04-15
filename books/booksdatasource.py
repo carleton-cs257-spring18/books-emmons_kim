@@ -44,12 +44,26 @@ class BooksDataSource:
             for linkids in linked_list:
                 if linkids[1] == str(author_id):
                     ids.append(linkids[0])
-            for id in ids:
-                for book in books_list:
+            for book in books_list:
+                for id in ids:
                     if book[0] == str(id):
                         books.append(book[1])
             return books
-        
+
+    @staticmethod
+    def specifiedsort(author_list, sort_key):
+        if sort_key == "birth_year":
+            s_author_list = sorted(author_list, key=operator.itemgetter(2))
+        else:
+            s_author_list = sorted(author_list, key=operator.itemgetter(0))
+        only_name_list = []
+        for each_author in s_author_list:
+            name_list = []
+            name_list.append(each_author[0])
+            name_list.append(each_author[1])
+            only_name_list.append(name_list)
+        return only_name_list
+
     ''' 
     Returns the author with the specified ID. 
     Raises ValueError if author_id is not a valid author ID.
@@ -66,12 +80,27 @@ class BooksDataSource:
                     author_name.append(author[2])
             return author_name
     
-    def authors(self, *, book_id=None, search_text=None, start_year=None, end_year=None, sort_by='birth_year'):
+    def authors(self, *, book_id=None, search_text=None, start_year=None,
+                end_year=None, sort_by='birth_year'):
         if book_id != None:
             if book_id > 48 or book_id < 0:
                 raise ValueError("That is not a valid ID number.")
             else:
-                return[]
+                book_author_list = BooksDataSource.openfile(self.books_authors)
+                authors_list = BooksDataSource.openfile(self.authorss)
+                author_ids = []
+                author_list = []
+                for book_author in book_author_list:
+                    if book_author[0] == str(book_id):
+                        author_ids.append(book_author[1])
+                for author in authors_list:
+                    author_name = []
+                    for id in author_ids:
+                        if author[0] == str(id):
+                            author_name.append(author[1])
+                            author_name.append(author[2])
+                            author_name.append(author[3])
+                            author_list.append(author_name)
         else:
             if search_text != None:
                 authors_list = BooksDataSource.openfile(self.authorss)
@@ -84,23 +113,13 @@ class BooksDataSource:
                         author_name.append(author[2])
                         author_name.append(author[3])
                         author_list.append(author_name)
-                if sort_by == "birth_year":
-                    s_author_list = sorted(author_list, key=operator.itemgetter(2))
-                else:
-                    s_author_list = sorted(author_list, key=operator.itemgetter(0))
-                only_name_list = []
-                for each_author in s_author_list:
-                    name_list = []
-                    name_list.append(each_author[0])
-                    name_list.append(each_author[1])
-                    only_name_list.append(name_list)
-                return only_name_list
             else:
                 return []
+        return BooksDataSource.specifiedsort(author_list, sort_by)
 
 '''
 booksdatasource = BooksDataSource("books.csv", "authors.csv", "books_authors.csv")
-print(booksdatasource.authors(search_text = "le", sort_by = "birth_year"))
-print(booksdatasource.authors(search_text = "char"))
-print(booksdatasource.authors(search_text = "w", sort_by = "value"))
+print(booksdatasource.authors(book_id = 23))
+print(booksdatasource.authors(book_id = 6, sort_by = "birth_year"))
+print(booksdatasource.authors(book_id = 6, sort_by = "value"))
 '''
