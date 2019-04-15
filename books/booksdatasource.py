@@ -54,8 +54,26 @@ class BooksDataSource:
     def specifiedsort(author_list, sort_key):
         if sort_key == "birth_year":
             s_author_list = sorted(author_list, key=operator.itemgetter(2))
+            check_authors = len(s_author_list)
+            for position in range (0, check_authors-2):
+                first_author = s_author_list[position]
+                second_author = s_author_list[position+1]
+                if (first_author[2] == second_author[2]
+                    and first_author[0] > second_author[0]):
+                    temp_author = first_author
+                    s_author_list[position] = s_author_list[position+1]
+                    s_author_list[position+1] = temp_author
         else:
             s_author_list = sorted(author_list, key=operator.itemgetter(0))
+            check_authors = len(s_author_list)
+            for position in range (0, check_authors-2):
+                first_author = s_author_list[position]
+                second_author = s_author_list[position+1]
+                if (first_author[0] == second_author[0]
+                    and first_author[1] > second_author[1]):
+                    temp_author = first_author
+                    s_author_list[position] = s_author_list[position+1]
+                    s_author_list[position+1] = temp_author
         only_name_list = []
         for each_author in s_author_list:
             name_list = []
@@ -116,27 +134,31 @@ class BooksDataSource:
             authors_list = BooksDataSource.openfile(self.authorss)
             author_list = []
             for author in authors_list:
-                if int(author[4]) >= int(start_year) or author[4] == NULL:
+                author_name = []
+                if author[4] >= str(start_year) or author[4] == "NULL":
                     author_name.append(author[1])
                     author_name.append(author[2])
                     author_name.append(author[3])
-                    author_list.appen(author_name)
+                    author_list.append(author_name)
         elif end_year != None:
             authors_list = BooksDataSource.openfile(self.authorss)
             author_list = []
             for author in authors_list:
                 author_name = []
-                if int(author[3]) <= int(end_year):
+                if author[3] <= str(end_year):
                     author_name.append(author[1])
                     author_name.append(author[2])
                     author_name.append(author[3])
                     author_list.append(author_name)
         return BooksDataSource.specifiedsort(author_list, sort_by)
 
-
 booksdatasource = BooksDataSource("books.csv", "authors.csv", "books_authors.csv")
-print(booksdatasource.authors(book_id = 23))
-print(booksdatasource.authors(book_id = 6, sort_by = "birth_year"))
-print(booksdatasource.authors(book_id = 6, sort_by = "value"))
-print(booksdatasource.authors(end_year = 2014))
-print(booksdatasource.authors(start_year = 2014))
+
+print(booksdatasource.authors(start_year = 1960))
+print('        ')
+print(booksdatasource.authors(start_year = 2000, sort_by = "birth_year"))
+print('        ')
+print(booksdatasource.authors(end_year = 1861))
+print('        ')
+print(booksdatasource.authors(end_year = 1820, sort_by = "birth_year"))
+
