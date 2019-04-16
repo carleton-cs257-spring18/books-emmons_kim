@@ -19,6 +19,7 @@ class BooksDataSource:
         self.bookss = books_filename # Variable with extra s prevents variable name mix up 
         self.authorss = authors_filename
         self.books_authors = books_authors_link_filename
+        
     '''
     This funtion opens a csv file and turns it into a list. Each element in the list contains
     a list of row information: for example, author_id, last_name, first_name, birth_year, and end_year.
@@ -67,8 +68,6 @@ class BooksDataSource:
                         books.append(book[1])
             return books
  
-    #Returns the author with the specified ID. 
-    #Raises ValueError if author_id is not a valid author ID.
     '''
     The function takes in an integer that represents an author ID. If the integer is not valid,
     if the ID is not contained in the authors file, the function will raise a ValueRrror.
@@ -135,7 +134,7 @@ class BooksDataSource:
         if book_id != None:
             if book_id > 48 or book_id < 0:
                 raise ValueError("That is not a valid ID number.")
-            else:
+            else: # book_id returns a list of authors who coauthored the specified book
                 book_author_list = BooksDataSource.openfile(self.books_authors)
                 authors_list = BooksDataSource.openfile(self.authorss)
                 author_ids = []
@@ -148,9 +147,10 @@ class BooksDataSource:
                         if author[0] == str(id):
                             author_name.append(author[1])
                             author_name.append(author[2])
-                            author_name.append(author[3])
-                            author_list.append(author_name)
-       elif search_text != None:
+                            author_name.append(author[3])   # Chose to include birth year so that
+                            author_list.append(author_name) # we could later sort names by birth year
+       elif search_text != None: # search_text returns a list of authors with last or first
+                                 # name containing specified phrase (not case sensitive)
             authors_list = BooksDataSource.openfile(self.authorss)
             for author in authors_list:
                 author_name = []
@@ -160,7 +160,8 @@ class BooksDataSource:
                     author_name.append(author[2])
                     author_name.append(author[3])
                     author_list.append(author_name)
-        elif start_year != None:
+        elif start_year != None: # start_year returns a list of authors who were or are
+                                 # still alive after specified year
             authors_list = BooksDataSource.openfile(self.authorss)
             for author in authors_list:
                 author_name = []
@@ -169,7 +170,8 @@ class BooksDataSource:
                     author_name.append(author[2])
                     author_name.append(author[3])
                     author_list.append(author_name)
-        elif end_year != None:
+        elif end_year != None: # end_year returns a list of authors who were or
+                               # have been alive til the specified year
             authors_list = BooksDataSource.openfile(self.authorss)
             for author in authors_list:
                 author_name = []
