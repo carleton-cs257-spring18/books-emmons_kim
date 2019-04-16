@@ -1,12 +1,21 @@
+'''
+Alison Kim
+Madeleine Emmons
+This program allows the user to sort a list of books or authors by a given attribute.
+'''
+
+
 import csv, operator
 
-class BooksDataSource:
 
+class BooksDataSource:
+    
     def __init__(self, books_filename, authors_filename, books_authors_link_filename):
         self.bookss = books_filename
         self.authorss = authors_filename
         self.books_authors = books_authors_link_filename
 
+    #This funtion opens a csv file and turns it into a list
     @staticmethod
     def openfile(filename):
          with open(filename, newline = "") as csvfile:
@@ -14,10 +23,8 @@ class BooksDataSource:
              file_list = sorted(file_reader, key=operator.itemgetter(0))
              return file_list
          
-    ''' 
-    Returns the book with the specified ID.
-    Raises ValueError if book_id is not a valid book ID.
-    '''
+    #The function takes in an integer that represents a book ID.  If the integer is not valid
+    # it will raise a value error.  It returns the author of the book. 
     def book(self, book_id):
         if book_id > 46 or book_id < 0:
             raise ValueError("That is not a valid ID number.")
@@ -26,13 +33,9 @@ class BooksDataSource:
             for book in books_list:
                 if book[0] == str(book_id):
                     return book[1]
-    ''' 
-    Returns a list of all the books in this data source matching all of
-    the specified non-None criteria.
-
-    author_id - only returns books by the specified author
-    default -- sorts by (case-insensitive) title, breaking ties with publication_year
-    '''
+    
+    # Takes in an author_id, search_text string, start_year, end_year or a sort_by method. 
+    # The function returns a list of books based on the author id.
     def books(self, *, author_id=None, search_text=None, start_year=None, end_year=None, sort_by='title'):
         if author_id > 24 or author_id < 0:
             raise ValueError("That is not a valid ID number.")
@@ -50,6 +53,8 @@ class BooksDataSource:
                         books.append(book[1])
             return books
 
+    #This function allows a list to be sorted by the authors birth year or alphbetically by
+    # their last name based on the input in the parameter. 
     @staticmethod
     def specifiedsort(author_list, sort_key):
         if sort_key == "birth_year":
@@ -82,10 +87,9 @@ class BooksDataSource:
             only_name_list.append(name_list)
         return only_name_list
 
-    ''' 
-    Returns the author with the specified ID. 
-    Raises ValueError if author_id is not a valid author ID.
-    '''
+     
+    #Returns the author with the specified ID. 
+    #Raises ValueError if author_id is not a valid author ID.
     def author(self, author_id):
         if author_id > 24 or author_id < 0:
             raise ValueError("That is not a valid ID number.")
@@ -98,6 +102,9 @@ class BooksDataSource:
                     author_name.append(author[2])
             return author_name
     
+    # This function returns a list of authors that consists of authors based on the
+    # specifications provided in the parameters. It takes in a book_id, search_text str
+    # start_year, or end_year, along with a sorting method. 
     def authors(self, *, book_id=None, search_text=None, start_year=None,
                 end_year=None, sort_by='birth_year'):
         if book_id != None:
@@ -151,14 +158,3 @@ class BooksDataSource:
                     author_name.append(author[3])
                     author_list.append(author_name)
         return BooksDataSource.specifiedsort(author_list, sort_by)
-
-booksdatasource = BooksDataSource("books.csv", "authors.csv", "books_authors.csv")
-
-print(booksdatasource.authors(start_year = 1960))
-print('        ')
-print(booksdatasource.authors(start_year = 2000, sort_by = "birth_year"))
-print('        ')
-print(booksdatasource.authors(end_year = 1861))
-print('        ')
-print(booksdatasource.authors(end_year = 1820, sort_by = "birth_year"))
-
