@@ -149,9 +149,8 @@ class BooksDataSource:
                             author_name.append(author[2])
                             author_name.append(author[3])   # Chose to include birth year so that
                             author_list.append(author_name) # we could later sort names by birth year
-       elif search_text != None: # search_text returns a list of authors with last or first
-                                 # name containing specified phrase (not case sensitive)
-            authors_list = BooksDataSource.openfile(self.authorss)
+        elif search_text != None: # search_text returns a list of authors with last or first name containing specified phrase
+            authors_list = BooksDataSource.openfile(self.authorss) # (not case sensitive)
             for author in authors_list:
                 author_name = []
                 if (author[1].lower().find(search_text.lower()) != -1 
@@ -160,8 +159,7 @@ class BooksDataSource:
                     author_name.append(author[2])
                     author_name.append(author[3])
                     author_list.append(author_name)
-        elif start_year != None: # start_year returns a list of authors who were or are
-                                 # still alive after specified year
+        elif start_year != None: # start_year returns a list of authors who were or are still alive after specified year
             authors_list = BooksDataSource.openfile(self.authorss)
             for author in authors_list:
                 author_name = []
@@ -170,8 +168,7 @@ class BooksDataSource:
                     author_name.append(author[2])
                     author_name.append(author[3])
                     author_list.append(author_name)
-        elif end_year != None: # end_year returns a list of authors who were or
-                               # have been alive til the specified year
+        elif end_year != None: # end_year returns a list of authors who were or have been alive til the specified year
             authors_list = BooksDataSource.openfile(self.authorss)
             for author in authors_list:
                 author_name = []
