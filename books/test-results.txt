@@ -1,0 +1,52 @@
+BooksDataSource Test Results, 17 April 2019
+Allison Kim and Madeline Emmons
+
+1. Ginnie White and Kate Grossman
+Yes, their code passes their own test
+(8/23)
+Lists don't match...We figured out the problem: they used dictionaries.
+
+2. Ankit Sanghi and Daniel Kleber
+Yes, their code passes their own test
+(8/23)
+Lists don't match because they are dictionaries!
+
+In order to run our test on others' codes, we had to change our import statement and the unit test object name.
+
+3. Our test: (* means failed, for both teams)
+1) test_small_book_id:
+2) test_big_book_id
+3) test_book_match *
+4) test_small_author_id_books
+5) test_big_author_id_books
+6) test_books_match_books *
+7) test_small_author_id
+8) test_big_author_id
+9) test_author_match *
+10) test_small_book_id_authors
+11) test_big_book_id_authors
+12) test_authors_default_match *
+13) test_authors_birth_year_match *
+14) test_authors_other_value_match *
+15) test_search_text_defeault_match *
+16) test_search_text_birth_year_match *
+17) test_search_text_other_value_match *
+18) test_start_year_birth_year_match *
+19) test_start_year_default_match *
+20) test_start_year_other_value_match *
+21) test_end_year_birth_year_match *
+22) test_end_year_default_match *
+23) test_end_year_other_value_match *
+
+These failures are caused by a disgreement between the teams on how to interpret the specification. Even though the initial BooksDataSource file states different forms of returned outputes, including Python lists and dictioanries, the following comments explain in detail how an author or a book should be represented in dictionary form. This is quite confusing because the authors function specifically says the collection should be in list form. We built our tests and codes to test and return lists. Because of this type mismatch, the other teams' outputs had too much information...For example, we expected an output that looks like [['Austen', 'Jane'], ['Brontë', 'Charlotte'], ['Dickens', 'Charles']]. However, others' codes resulted in something like this:
+- [{'birth_year': 1775,
+-   'death_year': 1817,
+-   'first_name': 'Jane',
+-   'id': 4,
+-   'last_name': 'Austen'},
+-  {'birth_year': 1812,
+-   'death_year': 1870,
+-   'first_name': 'Charles',
+-   'id': 23,
+-   'last_name': 'Dickens'}]
+We see a clear distinction in how we interpreted the assignment. This is not an easy fix because we just have to add in more information to our return type after we implement a dictionary.
