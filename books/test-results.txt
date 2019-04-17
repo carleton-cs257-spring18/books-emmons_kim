@@ -39,7 +39,7 @@ In order to run our test on others' codes, we had to change our import statement
 23) test_end_year_other_value_match *
 
 These failures are caused by a disgreement between the teams on how to interpret the specification.
-Even though the initial BooksDataSource file states different forms of returned outputes, including Python lists and dictioanries,
+Even though the initial BooksDataSource file states different forms of returned outputes, including Python lists and dictionaries,
 the following comments explain in detail how an author or a book should be represented in dictionary form.
 This is quite confusing because the authors function specifically says the collection should be in list form.
 We built our tests and codes to test and return lists. Because of this type mismatch, the other teams' outputs had too much information...
