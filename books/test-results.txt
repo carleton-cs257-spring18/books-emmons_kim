@@ -56,4 +56,4 @@ However, others' codes resulted in something like this:
 -   'id': 23,
 -   'last_name': 'Dickens'}]
 We see a clear distinction in how we interpreted the assignment.
-This is not an easy fix because we just have to add in more information to our return type after we implement a dictionary.
+This is an easy fix because we just have to add in more information to our return type after we implement a dictionary.
